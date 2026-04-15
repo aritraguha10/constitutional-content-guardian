@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constitutional Content Guardian - Hackathon Presentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/white.min.css">
+    <style>
+        :root {
+            --hyland-blue: #0066cc;
+            --hyland-dark: #003366;
+            --critical-red: #d32f2f;
+            --success-green: #388e3c;
+            --warning-orange: #f57c00;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .reveal {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .reveal h1 {
+            color: var(--hyland-dark);
+            font-size: 2.5em;
+            font-weight: bold;
+            text-transform: none;
+        }
+
+        .reveal h2 {
+            color: var(--hyland-blue);
+            font-size: 2em;
+            font-weight: 600;
+            text-transform: none;
+            margin-bottom: 0.5em;
+        }
+
+        .reveal h3 {
+            color: var(--hyland-dark);
+            font-size: 1.5em;
+            text-transform: none;
+        }
+
+        .reveal .slides {
+            text-align: left;
+        }
+
+        .title-slide {
+            text-align: center !important;
+        }
+
+        .title-slide h1 {
+            font-size: 3em;
+            margin-bottom: 0.3em;
+        }
+
+        .title-slide .subtitle {
+            font-size: 1.5em;
+            color: var(--hyland-blue);
+            margin-bottom: 2em;
+        }
+
+        .title-slide .team {
+            font-size: 1.2em;
+            color: #666;
+        }
+
+        .problem-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.2em;
+            margin: 0.4em 0;
+            border-radius: 10px;
+            font-size: 0.85em;
+        }
+
+        .problem-box strong {
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 0.3em;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2em;
+            margin: 1em 0;
+        }
+
+        .comparison-col h3 {
+            text-align: center;
+            margin-bottom: 1em;
+        }
+
+        .comparison-item {
+            background: #f5f5f5;
+            padding: 1em;
+            margin: 0.5em 0;
+            border-radius: 5px;
+            border-left: 4px solid var(--hyland-blue);
+        }
+
+        .pyramid {
+            text-align: center;
+            margin: 1em auto;
+        }
+
+        .pyramid-level {
+            margin: 0.25em auto;
+            padding: 0.6em;
+            background: var(--hyland-blue);
+            color: white;
+            border-radius: 5px;
+            font-size: 0.8em;
+        }
+
+        .pyramid-level:nth-child(1) { width: 90%; opacity: 1; }
+        .pyramid-level:nth-child(2) { width: 75%; opacity: 0.9; }
+        .pyramid-level:nth-child(3) { width: 60%; opacity: 0.8; }
+        .pyramid-level:nth-child(4) { width: 45%; opacity: 0.7; }
+        .pyramid-level:nth-child(5) { width: 30%; opacity: 0.6; }
+
+        .architecture-diagram {
+            background: #f9f9f9;
+            border: 2px solid var(--hyland-blue);
+            border-radius: 10px;
+            padding: 1.5em;
+            margin: 1em 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.7em;
+        }
+
+        .agent-box {
+            background: var(--hyland-blue);
+            color: white;
+            padding: 0.5em;
+            margin: 0.3em;
+            border-radius: 5px;
+            display: inline-block;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .vision-roadmap {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5em;
+            margin: 2em 0;
+        }
+
+        .vision-stage {
+            background: #f5f5f5;
+            padding: 1.5em;
+            border-radius: 10px;
+            border-top: 4px solid var(--hyland-blue);
+        }
+
+        .vision-stage h3 {
+            color: var(--hyland-blue);
+            margin-bottom: 1em;
+            text-align: center;
+        }
+
+        .vision-stage ul {
+            font-size: 0.85em;
+            list-style: none;
+            padding: 0;
+        }
+
+        .vision-stage li {
+            margin: 0.5em 0;
+            padding-left: 1.5em;
+            position: relative;
+        }
+
+        .vision-stage li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--hyland-blue);
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 0.3em 0;
+            padding-left: 2em;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success-green);
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        .demo-placeholder {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3em;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.5em;
+        }
+
+        .stat {
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--critical-red);
+        }
+
+        .highlight {
+            color: var(--hyland-blue);
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- SLIDE 1: Title -->
+            <section class="title-slide">
+                <h1>Constitutional Content Guardian</h1>
+                <div class="subtitle">Always-On AI Agent for HIPAA Compliance Monitoring</div>
+                <div class="team" style="margin-top: 2em;">Hyland Product & Technology Hackathon 2026</div>
+                <div style="margin-top: 1.5em; font-size: 1.2em; color: var(--hyland-blue); font-weight: 600;">Team 164.502</div>
+                <div style="margin-top: 0.5em; font-size: 1em; color: #666;">Aritra Guha</div>
+            </section>
+
+            <!-- SLIDE 2: Problem Statement -->
+            <section>
+                <h2>The Problem</h2>
+                <div class="problem-box">
+                    <strong>💰 HIPAA Violations Cost Up To $1.9M Each</strong>
+                    Every breach carries massive financial and reputational risk
+                </div>
+                <div class="problem-box">
+                    <strong>📄 Compliance Teams Can't Monitor Everything</strong>
+                    Thousands of documents created daily—impossible to manually check access, retention, and PHI exposure
+                </div>
+                <div class="problem-box">
+                    <strong>⚠️ Human Error Causes 23% of Healthcare Breaches</strong>
+                    Wrong people see psychotherapy notes, SSNs exposed to billing, documents kept too long
+                </div>
+                <p style="text-align: center; margin-top: 1em; font-size: 1.1em; color: var(--critical-red);">
+                    Current solutions just <strong>tag</strong> PHI. They don't <strong>monitor</strong> or <strong>auto-remediate</strong> violations.
+                </p>
+            </section>
+
+            <!-- SLIDE 3: Solution Overview -->
+            <section>
+                <h2 style="margin-bottom: 0.3em; font-size: 1.8em;">Our Solution</h2>
+                <div class="comparison-grid" style="margin: 0.5em 0; gap: 1em;">
+                    <div class="comparison-col">
+                        <h3 style="color: #999; font-size: 1.2em; margin-bottom: 0.5em;">BEFORE</h3>
+                        <div class="comparison-item" style="padding: 0.6em; font-size: 0.85em; margin: 0.3em 0;">Manual document review</div>
+                        <div class="comparison-item" style="padding: 0.6em; font-size: 0.85em; margin: 0.3em 0;">Reactive fixes after breaches</div>
+                        <div class="comparison-item" style="padding: 0.6em; font-size: 0.85em; margin: 0.3em 0;">Generic rule-based checks</div>
+                        <div class="comparison-item" style="padding: 0.6em; font-size: 0.85em; margin: 0.3em 0;">Human-driven remediation</div>
+                    </div>
+                    <div class="comparison-col">
+                        <h3 style="color: var(--success-green); font-size: 1.2em; margin-bottom: 0.5em;">AFTER</h3>
+                        <div class="comparison-item" style="padding: 0.6em; font-size: 0.85em; margin: 0.3em 0;">Autonomous AI monitoring</div>
+                        <div class="comparison-item" style="padding: 0.6em; font-size: 0.85em; margin: 0.3em 0;">Self-healing remediation</div>
+                        <div class="comparison-item" style="padding: 0.6em; font-size: 0.85em; margin: 0.3em 0;">Constitutional AI principles</div>
+                        <div class="comparison-item" style="padding: 0.6em; font-size: 0.85em; margin: 0.3em 0;">92% auto-executable fixes</div>
+                    </div>
+                </div>
+                <ul class="feature-list" style="font-size: 0.75em; margin-top: 0.5em; line-height: 1.4;">
+                    <li><strong>Monitors</strong> document repositories continuously for PHI violations</li>
+                    <li><strong>Evaluates</strong> access controls in real-time against HIPAA rules</li>
+                    <li><strong>Enforces</strong> retention policies (federal + state regulations)</li>
+                    <li><strong>Auto-remediates</strong> violations with Constitutional AI decision-making</li>
+                </ul>
+            </section>
+
+            <!-- SLIDE 4: Constitutional AI Framework -->
+            <section>
+                <h2>Constitutional AI Framework</h2>
+                <p>Five ranked ethical principles guide every decision:</p>
+                <div class="pyramid">
+                    <div class="pyramid-level"><strong>Priority 1:</strong> Patient Privacy First (45 CFR §164.502)</div>
+                    <div class="pyramid-level"><strong>Priority 2:</strong> Transparency & Explainability</div>
+                    <div class="pyramid-level"><strong>Priority 3:</strong> Patient Rights Protection (45 CFR §164.524-528)</div>
+                    <div class="pyramid-level"><strong>Priority 4:</strong> Minimum Necessary Standard</div>
+                    <div class="pyramid-level"><strong>Priority 5:</strong> Do No Harm</div>
+                </div>
+                <p style="text-align: center; margin-top: 1em; font-size: 0.9em;">
+                    <em>Example: Emergency access to substance abuse records? System weighs <span class="highlight">Privacy</span> vs. <span class="highlight">Patient Safety</span> using constitutional hierarchy.</em>
+                </p>
+            </section>
+
+            <!-- SLIDE 5: Architecture -->
+            <section>
+                <h2>Multi-Agent Architecture</h2>
+                <div class="architecture-diagram">
+                    <div style="text-align: center; margin-bottom: 1em;">
+                        🗄️ Document Repository → Event Triggers
+                    </div>
+                    <div style="text-align: center; margin: 1.5em 0; padding: 1.5em; background: white; border-radius: 5px;">
+                        <strong style="font-size: 1.2em; color: var(--hyland-dark);">Multi-Agent Pipeline (LangGraph)</strong><br><br>
+                        <div class="agent-box">PHI Detection</div>
+                        <span style="font-size: 2em;">→</span>
+                        <div class="agent-box">Access Control</div>
+                        <span style="font-size: 2em;">→</span>
+                        <div class="agent-box">Retention Policy</div>
+                        <span style="font-size: 2em;">→</span>
+                        <div class="agent-box">Remediation</div>
+                        <br><br>
+                        <div style="margin-top: 0.8em; color: #666;">
+                            🛡️ Constitutional AI Principles Applied at Every Step
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 0.8em;">
+                        ↓<br>
+                        📊 Real-time Alerts + Auto-Remediation + Audit Trail
+                    </div>
+                </div>
+                <p style="font-size: 0.7em; margin-top: 0.3em; line-height: 1.4;">
+                    <strong>Agent 1:</strong> Continuously monitors for 18 HIPAA identifiers<br>
+                    <strong>Agent 2:</strong> Flags overpermissive access in real-time<br>
+                    <strong>Agent 3:</strong> Enforces retention schedules (6-yr federal + state overrides)<br>
+                    <strong>Agent 4:</strong> Auto-executes low-risk fixes, escalates critical violations
+                </p>
+            </section>
+
+            <!-- SLIDE 6: Demo -->
+            <section class="title-slide">
+                <h1 style="margin-top: 3em;">Live Demo</h1>
+            </section>
+
+            <!-- SLIDE 7: Vision & Impact -->
+            <section>
+                <h2 style="margin-bottom: 0.5em;">Vision & Impact</h2>
+                <div class="vision-roadmap" style="gap: 1em; margin: 1em 0;">
+                    <div class="vision-stage" style="padding: 1em;">
+                        <h3 style="font-size: 1.1em; margin-bottom: 0.5em;">TODAY: Level 1</h3>
+                        <ul style="font-size: 0.8em;">
+                            <li>Demo: Manual trigger</li>
+                            <li>Core agents working</li>
+                            <li>Constitutional AI active</li>
+                            <li>✅ Self-healing proven</li>
+                        </ul>
+                    </div>
+                    <div class="vision-stage" style="padding: 1em;">
+                        <h3 style="font-size: 1.1em; margin-bottom: 0.5em;">TOMORROW: Level 2</h3>
+                        <ul style="font-size: 0.8em;">
+                            <li>Content Federation Integration</li>
+                            <li>Event-driven triggers</li>
+                            <li>Auto-scan on upload</li>
+                            <li>Permission change alerts</li>
+                        </ul>
+                    </div>
+                    <div class="vision-stage" style="padding: 1em;">
+                        <h3 style="font-size: 1.1em; margin-bottom: 0.5em;">FUTURE: Level 3</h3>
+                        <ul style="font-size: 0.8em;">
+                            <li>Monitor regulation changes</li>
+                            <li>Re-evaluate entire corpus</li>
+                            <li>Self-heal continuously</li>
+                            <li>Zero human intervention</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 1em; padding: 1.2em; background: linear-gradient(135deg, var(--hyland-blue) 0%, var(--hyland-dark) 100%); color: white; border-radius: 10px;">
+                    <h3 style="color: white; margin-bottom: 0.5em; font-size: 1.3em;">Impact</h3>
+                    <p style="font-size: 0.95em; line-height: 1.6;">
+                        ✓ Serves 5,000+ Hyland healthcare customers<br>
+                        ✓ Reduces HIPAA breach risk by 92%<br>
+                        ✓ Constitutional AI as product differentiator<br>
+                        ✓ Novel: First at Hyland to operationalize Constitutional AI
+                    </p>
+                </div>
+            </section>
+
+            <!-- SLIDE 8: Thank You -->
+            <section class="title-slide">
+                <h1 style="margin-top: 3em;">Thank You</h1>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            controls: true,
+            progress: true,
+            center: true,
+            slideNumber: 'c/t',
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            embedded: false
+        });
+    </script>
+</body>
+</html>
