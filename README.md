@@ -191,10 +191,6 @@ This is a hackathon project. For production use, additional work needed:
 - [ ] Multi-jurisdiction support (state laws)
 - [ ] Performance optimization for scale
 
-## 📝 License
-
-MIT License - Built for Hyland's Product & Technology Hackathon 2026
-
 ## 👥 Authors
 
 Built with Claude Code (Opus 4.6) + AWS Bedrock
